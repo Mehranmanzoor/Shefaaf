@@ -1,0 +1,17 @@
+@model ShefaafSpices.Web.Models.Product
+
+     @{
+         ViewData["Title"] = "Product Details";
+     }
+
+     <h1>Product Details</h1>
+
+     <div>
+         <h4>@Model.Name</h4>
+         <p>@Model.Description</p>
+         <p>Price: $@Model.Price</p>
+         <img src="@Model.ImageUrl" alt="@Model.Name" style="max-width: 300px;" />
+         <p>Stock: @Model.StockQuantity</p>
+         <p>Category: @(Model.Category?.Name ?? "N/A")</p>
+         <a asp-action="Index" class="btn btn-primary">Back to Products</a>
+     </div>

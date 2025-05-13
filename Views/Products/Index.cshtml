@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ShefaafSpices.Web.Models.Product>
+
+     @{
+         ViewData["Title"] = "Products";
+     }
+
+     <h1>Products</h1>
+
+     <table class="table">
+         <thead>
+             <tr>
+                 <th>Name</th>
+                 <th>Description</th>
+                 <th>Price</th>
+                 <th>Stock</th>
+                 <th>Category</th>
+                 <th></th>
+             </tr>
+         </thead>
+         <tbody>
+             @foreach (var item in Model)
+             {
+                 <tr>
+                     <td>@item.Name</td>
+                     <td>@item.Description</td>
+                     <td>@item.Price</td>
+                     <td>@item.StockQuantity</td>
+                     <td>@(item.Category?.Name ?? "N/A")</td>
+                     <td>
+                         <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                     </td>
+                 </tr>
+             }
+         </tbody>
+     </table>
