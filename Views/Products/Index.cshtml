@@ -1,35 +1,128 @@
 ﻿@model IEnumerable<ShefaafSpices.Web.Models.Product>
 
-     @{
-         ViewData["Title"] = "Products";
-     }
+@{
+    ViewData["Title"] = "Products";
+    var categories = ViewBag.Categories as List<ShefaafSpices.Web.Models.Category>;
+}
 
-     <h1>Products</h1>
-
-     <table class="table">
-         <thead>
-             <tr>
-                 <th>Name</th>
-                 <th>Description</th>
-                 <th>Price</th>
-                 <th>Stock</th>
-                 <th>Category</th>
-                 <th></th>
-             </tr>
-         </thead>
-         <tbody>
-             @foreach (var item in Model)
-             {
-                 <tr>
-                     <td>@item.Name</td>
-                     <td>@item.Description</td>
-                     <td>@item.Price</td>
-                     <td>@item.StockQuantity</td>
-                     <td>@(item.Category?.Name ?? "N/A")</td>
-                     <td>
-                         <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                     </td>
-                 </tr>
-             }
-         </tbody>
-     </table>
+<!-- Product Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-0 gx-5 align-items-end">
+            <div class="col-lg-6">
+                <div class="section-header text-start mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                    <h1 class="display-5 mb-3">Our Products</h1>
+                    <p>Explore our wide range of premium spices and herbs, sourced fresh for your culinary needs.</p>
+                </div>
+            </div>
+            <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
+                <ul class="nav nav-pills d-inline-flex justify-content-end mb-5">
+                    @if (categories != null && categories.Any())
+                    {
+                        var first = true;
+                        foreach (var category in categories)
+                        {
+                            <li class="nav-item me-2">
+                                <a class="btn btn-outline-primary border-2 @(first ? "active" : "")" data-bs-toggle="pill" href="#tab-@category.Id">@category.Name</a>
+                            </li>
+                            first = false;
+                        }
+                    }
+                    else
+                    {
+                        <li class="nav-item me-2">
+                            <a class="btn btn-outline-primary border-2 active" data-bs-toggle="pill" href="#tab-default">All Products</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content">
+            @if (categories != null && categories.Any())
+            {
+                var firstTab = true;
+                foreach (var category in categories)
+                {
+                    <div id="tab-@category.Id" class="tab-pane fade show p-0 @(firstTab ? "active" : "")">
+                        <div class="row g-4">
+                            @foreach (var product in Model.Where(p => p.CategoryId == category.Id))
+                            {
+                                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                    <div class="product-item">
+                                        <div class="position-relative bg-light overflow-hidden">
+                                            <img class="img-fluid w-100" src="@(string.IsNullOrEmpty(product.ImageUrl) ? "/img/placeholder.jpg" : product.ImageUrl)" alt="@product.Name">
+                                            <div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>
+                                        </div>
+                                        <div class="text-center p-4">
+                                            <a class="d-block h5 mb-2" asp-action="Details" asp-route-id="@product.Id">@product.Name</a>
+                                            <span class="text-primary me-1">$@product.Price</span>
+                                            <span class="text-body text-decoration-line-through">$@(product.Price + 10.00m)</span>
+                                        </div>
+                                        <div class="d-flex border-top">
+                                            <small class="w-50 text-center border-end py-2">
+                                                <a class="text-body" asp-action="Details" asp-route-id="@product.Id"><i class="fa fa-eye text-primary me-2"></i>View detail</a>
+                                            </small>
+                                            <small class="w-50 text-center py-2">
+                                                <a class="text-body" href="#"><i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (!Model.Any(p => p.CategoryId == category.Id))
+                            {
+                                <div class="col-12 text-center">
+                                    <p class="text-muted">No products available in this category.</p>
+                                </div>
+                            }
+                            <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+                                <a class="btn btn-primary rounded-pill py-3 px-5" asp-action="Index">Browse More Products</a>
+                            </div>
+                        </div>
+                    </div>
+                    firstTab = false;
+                }
+            }
+            else
+            {
+                <div id="tab-default" class="tab-pane fade show p-0 active">
+                    <div class="row g-4">
+                        @foreach (var product in Model)
+                        {
+                            <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="product-item">
+                                    <div class="position-relative bg-light overflow-hidden">
+                                        <img class="img-fluid w-100" src="@(string.IsNullOrEmpty(product.ImageUrl) ? "/img/placeholder.jpg" : product.ImageUrl)" alt="@product.Name">
+                                        <div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>
+                                    </div>
+                                    <div class="text-center p-4">
+                                        <a class="d-block h5 mb-2" asp-action="Details" asp-route-id="@product.Id">@product.Name</a>
+                                        <span class="text-primary me-1">$@product.Price</span>
+                                        <span class="text-body text-decoration-line-through">$@(product.Price + 10.00m)</span>
+                                    </div>
+                                    <div class="d-flex border-top">
+                                        <small class="w-50 text-center border-end py-2">
+                                            <a class="text-body" asp-action="Details" asp-route-id="@product.Id"><i class="fa fa-eye text-primary me-2"></i>View detail</a>
+                                        </small>
+                                        <small class="w-50 text-center py-2">
+                                            <a class="text-body" href="#"><i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @if (!Model.Any())
+                        {
+                            <div class="col-12 text-center">
+                                <p class="text-muted">No products available at the moment.</p>
+                            </div>
+                        }
+                        <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+                            <a class="btn btn-primary rounded-pill py-3 px-5" asp-action="Index">Browse More Products</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

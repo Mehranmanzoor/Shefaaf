@@ -1,10 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
 using ShefaafSpices.Web.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddSingleton<ICloudinaryService ,CloudinaryService >();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>

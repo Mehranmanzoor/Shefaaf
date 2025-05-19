@@ -4,38 +4,49 @@
     ViewData["Title"] = "Admin Dashboard";
 }
 
-<div class="container mt-5">
-    <h1 class="mb-4">Admin Dashboard - Manage Products</h1>
+<div class="container-xxl py-5">
+    <div class="container">
+        <h1 class="mb-4 text-center">Admin Dashboard - Manage Products</h1>
 
-    <p>
-        <a asp-action="AddProduct" class="btn btn-success">Add New Product</a>
-    </p>
+        <p class="text-center">
+            <a asp-action="AddProduct" class="btn btn-primary rounded-pill py-3 px-5">Add New Product</a>
+        </p>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Stock</th>
-                <th>Category</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Name</td>
-                    <td>@item.Description</td>
-                    <td>$@item.Price</td>
-                    <td>@item.StockQuantity</td>
-                    <td>@(item.Category?.Name ?? "N/A")</td>
-                    <td>
-                        <a asp-action="DeleteProduct" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        @if (!Model.Any())
+        {
+            <p class="text-center text-muted">No products available. Add some products to get started!</p>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Category</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Description</td>
+                                <td>$@item.Price</td>
+                                <td>@item.StockQuantity</td>
+                                <td>@(item.Category?.Name ?? "N/A")</td>
+                                <td>
+                                    <a asp-action="DeleteProduct" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
 </div>

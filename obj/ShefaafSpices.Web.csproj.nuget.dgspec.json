@@ -1,28 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Passcom\\ShefaafSpicesNew\\ShefaafSpices.Web\\ShefaafSpices.Web.csproj": {}
+    "C:\\Users\\firdo\\OneDrive\\Desktop\\ShefaafSpicesNew\\ShefaafSpices.Web\\ShefaafSpices.Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Passcom\\ShefaafSpicesNew\\ShefaafSpices.Web\\ShefaafSpices.Web.csproj": {
+    "C:\\Users\\firdo\\OneDrive\\Desktop\\ShefaafSpicesNew\\ShefaafSpices.Web\\ShefaafSpices.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Passcom\\ShefaafSpicesNew\\ShefaafSpices.Web\\ShefaafSpices.Web.csproj",
+        "projectUniqueName": "C:\\Users\\firdo\\OneDrive\\Desktop\\ShefaafSpicesNew\\ShefaafSpices.Web\\ShefaafSpices.Web.csproj",
         "projectName": "ShefaafSpices.Web",
-        "projectPath": "C:\\Users\\Passcom\\ShefaafSpicesNew\\ShefaafSpices.Web\\ShefaafSpices.Web.csproj",
-        "packagesPath": "C:\\Users\\Passcom\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Passcom\\ShefaafSpicesNew\\ShefaafSpices.Web\\obj\\",
+        "projectPath": "C:\\Users\\firdo\\OneDrive\\Desktop\\ShefaafSpicesNew\\ShefaafSpices.Web\\ShefaafSpices.Web.csproj",
+        "packagesPath": "C:\\Users\\firdo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\firdo\\OneDrive\\Desktop\\ShefaafSpicesNew\\ShefaafSpices.Web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Passcom\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\firdo\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -41,12 +38,16 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.27.5, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.1, )"
@@ -76,6 +77,10 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[9.0.1, )"
+            },
+            "dotenv.net": {
+              "target": "Package",
+              "version": "[3.2.1, )"
             }
           },
           "imports": [
@@ -97,7 +102,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

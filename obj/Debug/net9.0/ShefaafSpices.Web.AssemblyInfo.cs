@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ShefaafSpices.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2ed849c511bdc520b02279a950cbea3126d6b89b")]
 [assembly: System.Reflection.AssemblyProductAttribute("ShefaafSpices.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ShefaafSpices.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
